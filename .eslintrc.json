@@ -1,7 +1,8 @@
 {
   "root": true,
+  "parser": "@typescript-eslint/parser",
   "ignorePatterns": ["!**/*"],
-  "plugins": ["@nx"],
+  "plugins": ["@nx", "@typescript-eslint", "prettier"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
@@ -10,15 +11,23 @@
     },
     {
       "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nx/javascript"],
+      "extends": [
+        "plugin:@nx/javascript",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier",
+        "prettier/@typescript-eslint"
+      ],
       "rules": {}
     },
     {
       "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
       "env": {
-        "jest": true
+        "jest": true,
+        "node": true,
+        "es2021": true
       },
-      "rules": {}
+      "rules": { "prettier/prettier": "error" }
     }
   ]
 }

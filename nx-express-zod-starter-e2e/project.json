@@ -1,0 +1,30 @@
+{
+    "name": "nx-express-zod-starter-e2e",
+    "$schema": "../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "nx-express-zod-starter-e2e/src",
+    "projectType": "application",
+    "targets": {
+        "e2e": {
+            "executor": "@nx/cypress:cypress",
+            "options": {
+                "cypressConfig": "nx-express-zod-starter-e2e/cypress.config.ts",
+                "devServerTarget": "nx-express-zod-starter:serve:development",
+                "testingType": "e2e"
+            },
+            "configurations": {
+                "production": {
+                    "devServerTarget": "nx-express-zod-starter:serve:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["nx-express-zod-starter-e2e/**/*.{js,ts}"]
+            }
+        }
+    },
+    "tags": [],
+    "implicitDependencies": ["nx-express-zod-starter"]
+}
